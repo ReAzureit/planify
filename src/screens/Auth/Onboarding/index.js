@@ -2,9 +2,10 @@ import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {images} from '../../../constants';
 import styles from './styles';
-import Button from '../../../components/Button';
+import {Button} from '../../../components';
 
-const Onboarding = () => {
+const Onboarding = ({navigation}) => {
+  const handleLoginPress = () => navigation.navigate('Signin');
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={images.Onboarding} />
@@ -14,7 +15,9 @@ const Onboarding = () => {
           Get organized by sorting out all your tasks and boost your
           productivity.
         </Text>
-        <Button type={'purple'}>Log in</Button>
+        <Button onPress={handleLoginPress} type={'purple'}>
+          Log in
+        </Button>
         <Button type={'blue'}>Get Started</Button>
       </View>
     </View>
