@@ -1,3 +1,4 @@
 import Onboarding from './Auth/Onboarding';
 import Signin from './Auth/Signin';
-export {Onboarding, Signin};
+import Signup from './Auth/Signup';
+export {Onboarding, Signin, Signup};

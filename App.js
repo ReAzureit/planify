@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Onboarding, Signin} from './src/screens';
+import {Onboarding, Signin, Signup} from './src/screens';
 
 const Stack = createStackNavigator();
 
@@ -11,6 +11,7 @@ const App = () => {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Signin" component={Signin} />
+        <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
   );
