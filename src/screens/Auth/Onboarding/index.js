@@ -6,6 +6,7 @@ import {Button} from '../../../components';
 
 const Onboarding = ({navigation}) => {
   const handleLoginPress = () => navigation.navigate('Signin');
+  const handleGetStartedPress = () => navigation.navigate('Signup');
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={images.Onboarding} />
@@ -18,7 +19,9 @@ const Onboarding = ({navigation}) => {
         <Button onPress={handleLoginPress} type={'purple'}>
           Log in
         </Button>
-        <Button type={'blue'}>Get Started</Button>
+        <Button onPress={handleGetStartedPress} type={'blue'}>
+          Get Started
+        </Button>
       </View>
     </View>
   );

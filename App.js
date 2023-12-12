@@ -1,18 +1,11 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {Onboarding, Signin, Signup} from './src/screens';
-
-const Stack = createStackNavigator();
+import Routes from './src/Routes';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="Signin" component={Signin} />
-        <Stack.Screen name="Signup" component={Signup} />
-      </Stack.Navigator>
+      <Routes />
     </NavigationContainer>
   );
 };
