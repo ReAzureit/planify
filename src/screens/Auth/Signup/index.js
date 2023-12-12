@@ -76,10 +76,6 @@ const Signup = ({navigation}) => {
       [key]: value,
     }));
   };
-  const logout = () =>
-    auth()
-      .signOut()
-      .then(() => console.log('User signed out!'));
 
   return (
     <SafeAreaView style={styles.container}>
