@@ -1,15 +1,19 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {useEffect, useState} from 'react';
 import auth from '@react-native-firebase/auth';
-import {Onboarding, Signin, Signup} from './screens';
+import {Home, Onboarding, Signin, Signup, Task} from './screens';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Image} from 'react-native';
+import {icons} from './constants';
 
 const Routes = () => {
-  const Stack = createStackNavigator();
-  // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  const Stack = createStackNavigator();
+  const Drawer = createDrawerNavigator();
+  const Tab = createBottomTabNavigator();
 
-  // Handle user state changes
   function onAuthStateChanged(user) {
     setUser(user);
     if (initializing) {
@@ -20,11 +24,52 @@ const Routes = () => {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (initializing) {
     return null;
+  }
+
+  const Tabs = () => {
+    return (
+      <Tab.Navigator
+        screenOptions={{headerShown: false, tabBarShowLabel: false}}>
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                style={{width: 24, height: 24}}
+                source={focused ? icons.icHomeActive : icons.icHomeInactive}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Task"
+          component={Task}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                style={{width: 24, height: 24}}
+                source={
+                  focused ? icons.icCalendarActive : icons.icCalendarInactive
+                }
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  };
+
+  if (user) {
+    return (
+      <Drawer.Navigator>
+        <Drawer.Screen name="Tabs" component={Tabs} />
+      </Drawer.Navigator>
+    );
   }
 
   return (
